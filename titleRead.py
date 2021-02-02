@@ -1,5 +1,6 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
+from pairTitleSinger import Pair
 
 
 class TitleRead:
@@ -14,4 +15,16 @@ class TitleRead:
         soup = BeautifulSoup(content, 'lxml')
         self.titles = soup.findAll('a', id='video-title')
         self.driver.quit()
+
+    def titlesToText(self):
+        self.getContent()
+        for i in range(len(self.titles)):
+            self.titles[i] = self.titles[i].text
+
+    def leaveOnlyAuthorAndSongTitle(self):
+        self.titlesToText()
+
+    def returnTitles(self):
+        self.leaveOnlyAuthorAndSongTitle()
         return self.titles
+
