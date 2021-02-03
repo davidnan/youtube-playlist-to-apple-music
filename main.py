@@ -1,8 +1,7 @@
 from titleRead import TitleRead
 
-url = input("Url of the playlist: ")
-
 if __name__ == '__main__':
+    url = input("Url of the playlist: ")
     titleReader = TitleRead(url)
     titles = titleReader.returnTitles()
     for title in titles:

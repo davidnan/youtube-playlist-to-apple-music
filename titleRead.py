@@ -1,6 +1,5 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
-from pairTitleSinger import Pair
 
 
 class TitleRead:
@@ -21,10 +20,18 @@ class TitleRead:
         for i in range(len(self.titles)):
             self.titles[i] = self.titles[i].text
 
-    def leaveOnlyAuthorAndSongTitle(self):
+    def removeTags(self):
         self.titlesToText()
+        for i in range(len(self.titles)):
+            title = ''
+            for j in range(len(self.titles[i])):
+                if self.titles[i][j] != '|' and self.titles[i][j] != '(' and self.titles[i][j] != '[':
+                    title += self.titles[i][j]
+                else:
+                    break
+            self.titles[i] = title.strip()
 
     def returnTitles(self):
-        self.leaveOnlyAuthorAndSongTitle()
+        self.removeTags()
         return self.titles
 
