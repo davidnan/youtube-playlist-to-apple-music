@@ -24,14 +24,16 @@ class TitleRead:
         self.titlesToText()
         for i in range(len(self.titles)):
             title = ''
+            tag = False
             for j in range(len(self.titles[i])):
-                if self.titles[i][j] != '|' and self.titles[i][j] != '(' and self.titles[i][j] != '[':
+                if self.titles[i][j] == '(' or self.titles[i][j] == '[' or self.titles[i][j] == '|':
+                    tag = True
+                if not tag:
                     title += self.titles[i][j]
-                else:
-                    break
+                if self.titles[i][j] == ')' or self.titles[i][j] == ']':
+                    tag = False
             self.titles[i] = title.strip()
 
     def returnTitles(self):
         self.removeTags()
         return self.titles
-
