@@ -10,15 +10,13 @@ class TitleRead:
         self.titles = None
 
     def getContent(self):
-        content = self.driver.page_source.encode('utf-8').strip()
-        soup = BeautifulSoup(content, 'lxml')
-        self.titles = soup.findAll('a', id='video-title')
-        self.driver.quit()
+        self.titles = self.driver.find_elements_by_id("video-title")
 
     def titlesToText(self):
         self.getContent()
         for i in range(len(self.titles)):
             self.titles[i] = self.titles[i].text
+        self.driver.quit()
 
     def removeTags(self):
         self.titlesToText()
@@ -33,6 +31,8 @@ class TitleRead:
                 if self.titles[i][j] == ')' or self.titles[i][j] == ']':
                     tag = False
             self.titles[i] = title.strip()
+        while '' in self.titles:
+            self.titles.remove('')
 
     def returnTitles(self):
         self.removeTags()
