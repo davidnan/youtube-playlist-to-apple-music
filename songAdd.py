@@ -24,6 +24,7 @@ class SongAdd:
     def searchSong(self, title):
         self.searchBar.send_keys(title)
         self.searchBar.send_keys(Keys.RETURN)
+        self.searchBar.clear()
 
     def findSongOnPage(self, title):
         self.searchSong(title)
@@ -45,7 +46,7 @@ class SongAdd:
         for option in options:
             if option.text == self.playlist_title:
                 option.click()
-                if self.playlist_found:
+                if not self.playlist_found:
                     print("Playlist found!")
                 self.playlist_found = True
                 break

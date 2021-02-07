@@ -4,8 +4,7 @@ import time
 
 
 if __name__ == '__main__':
-    url = "https://www.youtube.com/playlist?list=PLATsKRM-dkx5OyHTITUn0dc-nhaPieImz"
-    # url = input("Url of the playlist: ")
+    url = input("Url of the playlist: ")
     titleReader = TitleRead(url)
     titles = titleReader.returnTitles()
     for title in titles:
