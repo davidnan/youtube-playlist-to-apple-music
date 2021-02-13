@@ -1,5 +1,4 @@
 from selenium import webdriver
-from bs4 import BeautifulSoup
 
 
 class TitleRead:
@@ -9,15 +8,18 @@ class TitleRead:
         self.driver.get(self.url)
         self.titles = None
 
+    # Gets the song title
     def getContent(self):
         self.titles = self.driver.find_elements_by_id("video-title")
 
+    # Gets all the song titles and puts them in an array
     def titlesToText(self):
         self.getContent()
         for i in range(len(self.titles)):
             self.titles[i] = self.titles[i].text
         self.driver.quit()
 
+    # Tries to remove unnecessary elements from the song title
     def removeTags(self):
         self.titlesToText()
         for i in range(len(self.titles)):
